@@ -1,5 +1,5 @@
 import { Schema } from 'joi';
-import { sendResponse } from '../helpers/response.js';
+import { sendResponse } from '../common/response.js';
 import { NextFunction, Request, Response } from 'express';
 
 export function validateSchema(schema: Schema) {

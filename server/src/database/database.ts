@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import { MONGO_URI } from '../config/config.js';
+import { mongoUri } from '../config/config.js';
 
 async function connect() {
 	try {
-		await mongoose.connect(MONGO_URI, {
+		await mongoose.connect(mongoUri, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true
 		} as mongoose.ConnectOptions);

@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 const photoSchema = new Schema({
-	id: String,
+	photoId: String,
 	title: {
 		type: String,
 		required: false,

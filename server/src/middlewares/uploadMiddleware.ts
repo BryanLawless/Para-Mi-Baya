@@ -2,14 +2,14 @@ import fs from 'fs';
 import { File } from 'multer';
 import { upload } from '../common/storage.js';
 import { Response, NextFunction } from 'express';
-import { RequestFiles } from '../types/extendTypes.js';
+import { RequestExtended } from '../types/extendTypes.js';
 
 export function uploadMiddleware(
-	req: RequestFiles,
+	req: RequestExtended,
 	res: Response,
 	next: NextFunction
 ) {
-	upload.array('files', 5)(req, res, (err) => {
+	upload.array('files', 5)(req, res, (err: Error) => {
 		if (err) return res.status(400).json({ error: err.message });
 
 		const errors = [];
@@ -20,10 +20,10 @@ export function uploadMiddleware(
 			const maxSize = 5 * 1024 * 1024;
 
 			if (!allowedTypes.includes(file.mimetype))
-				errors.push(`Invalid file type: ${file.originalname}`);
+				errors.push(`invalid file type: ${file.originalname}`);
 
 			if (file.size > maxSize)
-				errors.push(`File too large: ${file.originalname}`);
+				errors.push(`file too large: ${file.originalname}`);
 		});
 
 		if (errors.length > 0) {

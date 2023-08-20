@@ -27,8 +27,8 @@ app.use(
 );
 
 app.use(cookieParser());
-app.use(express.json({ limit: '5mb' }));
-app.use(express.urlencoded({ extended: true, limit: '5mb' }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 cloudinary.config({
 	cloud_name: cloudinaryCloudName,
@@ -39,9 +39,9 @@ cloudinary.config({
 database.connect();
 
 app.use('/api', router);
-app.use((req: Request, res: Response, next: NextFunction) =>
+/*app.use((req: Request, res: Response, next: NextFunction) =>
 	res.sendStatus(httpStatus.NOT_FOUND)
-);
+);*/
 
 server.listen(Number(process.env.PORT) || 5000, (): void => {
 	console.log('🍓 - Para Mi Baya server started');

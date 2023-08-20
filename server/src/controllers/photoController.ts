@@ -1,9 +1,9 @@
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
 import { Photo } from '../types/photoTypes.js';
-import { sendResponse } from '../helpers/response.js';
-import { RequestFiles } from '../types/extendTypes.js';
+import { sendResponse } from '../common/response.js';
 import PhotoService from '../services/photoService.js';
+import { RequestExtended } from '../types/extendTypes.js';
 
 export default class PhotoController {
 	static async getPhotos(req: Request, res: Response) {
@@ -12,7 +12,7 @@ export default class PhotoController {
 		sendResponse(res, httpStatus.OK, 'Photos fetched successfully', resources);
 	}
 
-	static async uploadPhotos(req: RequestFiles, res: Response) {
+	static async uploadPhotos(req: RequestExtended, res: Response) {
 		let photos: Photo[] = [];
 		const files = req.files;
 
