@@ -2,6 +2,7 @@ import { Router } from 'express';
 import authRoutes from './authRoutes.js';
 import photoRoutes from './photoRoutes.js';
 import userRoutes from './userRoutes.js';
+import spotifyRoutes from './spotifyRoutes.js';
 
 const router: Router = Router();
 
@@ -17,6 +18,10 @@ const defaultRoutes = [
 	{
 		path: '/users',
 		route: userRoutes
+	},
+	{
+		path: '/spotify',
+		route: spotifyRoutes
 	}
 ];
 

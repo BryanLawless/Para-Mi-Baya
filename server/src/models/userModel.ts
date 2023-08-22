@@ -18,6 +18,18 @@ const userSchema = new Schema({
 		type: String,
 		required: true,
 		maxLength: 255
+	},
+	spotifyAccess: {
+		type: String,
+		required: false,
+		maxLength: 255,
+		default: ''
+	},
+	spotifyRefresh: {
+		type: String,
+		required: false,
+		maxLength: 255,
+		default: ''
 	}
 });
 

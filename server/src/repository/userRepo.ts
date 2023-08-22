@@ -26,4 +26,21 @@ export default class UserRepo {
 	static async existsId(userId: string): Promise<boolean> {
 		return await UsersModel.findOne({ userId: userId }).select('userId').lean();
 	}
+
+	static async updateSpotifyTokens(
+		userId: string,
+		accessToken: string,
+		refreshToken: string
+	): Promise<User> {
+		return await UsersModel.findOneAndUpdate(
+			{ userId: userId },
+			{
+				$set: {
+					spotifyAccess: accessToken,
+					spotifyRefresh: refreshToken
+				}
+			},
+			{ new: true }
+		).lean();
+	}
 }

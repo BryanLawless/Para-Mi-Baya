@@ -5,6 +5,8 @@ export interface User {
 	password: string;
 	confirmPassword?: string;
 	tokens?: Tokens;
+	spotifyAccess?: string;
+	spotifyRefresh?: string;
 }
 
 export interface Tokens {

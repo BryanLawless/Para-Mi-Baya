@@ -4,8 +4,9 @@ import httpStatus from 'http-status';
 import router from './router/index.js';
 import cookieParser from 'cookie-parser';
 import { v2 as cloudinary } from 'cloudinary';
-import express, { Express, Request, Response, NextFunction } from 'express';
 import database from './database/database.js';
+import registerSocketServer from './gateway/main.js';
+import express, { Express, Request, Response, NextFunction } from 'express';
 import {
 	clientUrl,
 	cloudinaryCloudName,
@@ -39,9 +40,11 @@ cloudinary.config({
 database.connect();
 
 app.use('/api', router);
-/*app.use((req: Request, res: Response, next: NextFunction) =>
+app.use((req: Request, res: Response, next: NextFunction) =>
 	res.sendStatus(httpStatus.NOT_FOUND)
-);*/
+);
+
+registerSocketServer(server);
 
 server.listen(Number(process.env.PORT) || 5000, (): void => {
 	console.log('🍓 - Para Mi Baya server started');
