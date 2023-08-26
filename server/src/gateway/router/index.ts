@@ -1,9 +1,9 @@
-import { test } from '../events.js';
+import { getPlayingEvent } from '../events.js';
 import baseHandler from '../handlers/baseHandler.js';
 
 export default [
 	{
-		name: test,
-		controller: baseHandler.test
+		name: getPlayingEvent,
+		controller: baseHandler.getPlaying
 	}
 ];

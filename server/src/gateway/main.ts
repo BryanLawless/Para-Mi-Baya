@@ -2,6 +2,8 @@ import { Server } from 'socket.io';
 import routes from './router/index.js';
 import { Server as httpServer } from 'http';
 import { clientUrl } from '../config/config.js';
+import { authSocket } from './middlewares/authMiddleware.js';
+import { SocketExtended } from '../types/extendTypes.js';
 
 function registerSocketServer(server: httpServer) {
 	const io = new Server(server, {
@@ -15,11 +17,13 @@ function registerSocketServer(server: httpServer) {
 
 	console.log('🔌 - Websocket server started');
 
+	io.use(authSocket);
+
 	io.on('connection', (socket) => {
 		// skipcq: JS-D008
 		routes.map((route) => {
 			socket.on(route.name, (data) => {
-				route.controller(io, socket, data);
+				route.controller(io, socket as SocketExtended, data);
 			});
 		});
 	});

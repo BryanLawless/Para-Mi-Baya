@@ -1,1 +1,1 @@
-export const test = 'TEST';
+export const getPlayingEvent = 'getPlayingEvent';

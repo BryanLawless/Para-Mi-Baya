@@ -1,4 +1,5 @@
 import httpStatus from 'http-status';
+import { env } from '../config/config.js';
 import { Request, Response } from 'express';
 import { User } from '../types/userTypes.js';
 import AuthService from '../services/authService.js';

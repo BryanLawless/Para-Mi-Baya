@@ -1,6 +1,7 @@
 import cors from 'cors';
 import { createServer } from 'http';
 import httpStatus from 'http-status';
+import session from 'express-session';
 import router from './router/index.js';
 import cookieParser from 'cookie-parser';
 import { v2 as cloudinary } from 'cloudinary';
@@ -25,6 +26,14 @@ app.use(
 		origin: clientUrl,
 		methods: ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']
 	})
+);
+
+app.use(
+	session({
+		secret: 'test',
+		resave: false,
+		saveUninitialized: true
+	} as any)
 );
 
 app.use(cookieParser());
