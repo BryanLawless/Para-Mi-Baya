@@ -17,6 +17,7 @@ const envSchema = joi
 		SPOTIFY_CLIENT_SECRET: joi.string().required(),
 		SPOTIFY_REDIRECT_URI: joi.string().required(),
 
+		SESSION_SECRET: joi.string().min(16).required(),
 		JWT_SECRET_KEY: joi.string().min(32).required()
 	})
 	.unknown();
@@ -36,4 +37,5 @@ export const spotifyRedirectUri = envVars.SPOTIFY_REDIRECT_URI;
 export const cloudinaryCloudName = envVars.CLOUDINARY_CLOUD_NAME;
 export const cloudinaryApiKey = envVars.CLOUDINARY_API_KEY;
 export const cloudinaryApiKeySecret = envVars.CLOUDINARY_API_SECRET;
+export const sessionSecret = envVars.SESSION_SECRET;
 export const jwtSecretKey = envVars.JWT_SECRET_KEY;

@@ -53,7 +53,7 @@ const props = defineProps({
 }
 
 .card label .tag:not(:last-child)::after {
-	content: ",";
+	content: ',';
 }
 
 .card label .tag:hover {

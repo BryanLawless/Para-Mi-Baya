@@ -4,7 +4,7 @@ export default async function request(
 	uri: string,
 	method: string,
 	data: object = {}
-): Promise<{ status: number; response: any } | { status: any; response: any }> {
+): Promise<{ status: number; response: any }> {
 	let requestPromise = await instance
 		.request({
 			method: method,

@@ -4,9 +4,15 @@ module.exports = {
 		"./src/**/*.{vue,js,ts,jsx,tsx}",
 	],
 	theme: {
-		extend: {},
-		container: {
-			center: true,
+		extend: {
+			colors: {
+				textWhite: "#FFFFFF",
+				primary: "#e02b70",
+				primaryHover: "#e33477",
+				primaryInputBg: "#1a1718",
+				primaryInputOutline: "#121011",
+			},
 		},
+		container: { center: true },
 	},
 };

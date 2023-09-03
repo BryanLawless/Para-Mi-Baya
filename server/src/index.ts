@@ -6,13 +6,14 @@ import router from './router/index.js';
 import cookieParser from 'cookie-parser';
 import { v2 as cloudinary } from 'cloudinary';
 import database from './database/database.js';
-import registerSocketServer from './gateway/main.js';
+import createWebSocketServer from './gateway/main.js';
 import express, { Express, Request, Response, NextFunction } from 'express';
 import {
 	clientUrl,
 	cloudinaryCloudName,
 	cloudinaryApiKey,
-	cloudinaryApiKeySecret
+	cloudinaryApiKeySecret,
+	sessionSecret
 } from './config/config.js';
 
 const app: Express = express();
@@ -30,8 +31,8 @@ app.use(
 
 app.use(
 	session({
-		secret: 'test',
 		resave: false,
+		secret: sessionSecret,
 		saveUninitialized: true
 	} as any)
 );
@@ -53,7 +54,7 @@ app.use((req: Request, res: Response, next: NextFunction) =>
 	res.sendStatus(httpStatus.NOT_FOUND)
 );
 
-registerSocketServer(server);
+createWebSocketServer(server);
 
 server.listen(Number(process.env.PORT) || 5000, (): void => {
 	console.log('🍓 - Para Mi Baya server started');

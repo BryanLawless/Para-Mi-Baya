@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { BACKEND_URL } from '@/config/config.js';
-
-axios.defaults.withCredentials = true;
+import { useAuthStore } from '@/stores/authStore';
 
 const instance = axios.create({
 	baseURL: BACKEND_URL + '/api/',
@@ -10,5 +9,17 @@ const instance = axios.create({
 		return status >= 200 && status < 500;
 	}
 });
+
+instance.interceptors.request.use(
+	(config) => {
+		const authStore = useAuthStore();
+
+		if (authStore.isLoggedIn)
+			config.headers.Authorization = `Bearer ${authStore.token}`;
+
+		return config;
+	},
+	(error) => Promise.reject(error)
+);
 
 export default instance;

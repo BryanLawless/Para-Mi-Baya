@@ -5,7 +5,7 @@ import { clientUrl } from '../config/config.js';
 import { authSocket } from './middlewares/authMiddleware.js';
 import { SocketExtended } from '../types/extendTypes.js';
 
-function registerSocketServer(server: httpServer) {
+export default function createWebsocketServer(server: httpServer) {
 	const io = new Server(server, {
 		cors: {
 			origin: clientUrl,
@@ -28,5 +28,3 @@ function registerSocketServer(server: httpServer) {
 		});
 	});
 }
-
-export default registerSocketServer;

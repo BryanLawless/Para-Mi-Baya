@@ -1,11 +1,14 @@
-import { createApp } from 'vue';
 import App from './App.vue';
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import Notifications from 'notiwind';
 import router from './router/index.js';
 import MasonryWall from '@yeger/vue-masonry-wall';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import '@/assets/stylesheets/base.css';
 import '@/assets/stylesheets/normalize.css';
+import '@/assets/stylesheets/base.css';
 
 import {
 	faLock,
@@ -25,18 +28,15 @@ import {
 	faEllipsisVertical,
 	faMoon,
 	faSun,
-	faFilter
+	faFilter,
+	faSearch,
+	faTimes
 } from '@fortawesome/free-solid-svg-icons';
-import { faSquare, faKeyboard } from '@fortawesome/free-regular-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
 library.add(
 	faUser,
 	faLock,
-	faSquare,
 	faTextHeight,
-	faKeyboard,
 	faLink,
 	faImage,
 	faBars,
@@ -52,11 +52,16 @@ library.add(
 	faMoon,
 	faSun,
 	faFilter,
-	faGithub
+	faSearch,
+	faTimes
 );
+
+const pinia = createPinia();
 
 createApp(App)
 	.component('font-awesome-icon', FontAwesomeIcon)
+	.use(Notifications)
 	.use(MasonryWall)
 	.use(router)
+	.use(pinia)
 	.mount('#app');
